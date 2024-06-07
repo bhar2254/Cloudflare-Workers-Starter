@@ -86,7 +86,7 @@ var src_default = {
 			}
 			default: {
 				const page = new Page({ ...env, pageTitle: '404',
-					body: `<span class="fs-3">404</span> <hr> PAGE NOT FOUND! Head <a href="/">home</a> to try and find what you're looking for.<br><br>If you believe this is in error, contact the IT Helpdesk at helpdesk@indianhills.edu.`
+					body: `<span class="fs-3">404</span> <hr> PAGE NOT FOUND! Head <a href="/">home</a> to try and find what you're looking for.`
 				})
 				return rawHtmlResponse(page.render())
 			}
