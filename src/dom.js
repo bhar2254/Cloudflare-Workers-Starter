@@ -180,9 +180,9 @@ export class Page extends HtmlElement {
     }
     constructor(args) {
         super(args)
-        this.siteTitle = args.siteTitle || 'Default'
-        this.pageTitle = args.pageTitle || 'Page'
-        this.header = `${this.siteTitle} | ${this.pageTitle}`
+        this.siteTitle = args.siteTitle.capitalizeFirstChar() || 'Default'
+        this.pageTitle = args.pageTitle.capitalizeFirstChar() || 'Page'
+        this.header = { headerTitle: `${this.siteTitle} | ${this.pageTitle}`, headerOverwrite: args.headerOverwrite || null }
         this.brand = this.siteTitle
         this.navbar = args.navbar || [{}]
         this.body = args.body || 'Bootstrap 5 Starter'
@@ -197,18 +197,20 @@ export class Page extends HtmlElement {
     get footerDef() {
         return Page.footerDef
     }
-    set header(title) {
-        this._header = `
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf8" />
-        <title>${title}</title>
-        ${Page.headerDef}
-    </head>`
+    set header(args) {
+        this._headerTitle = args.headerTitle
+        if(args.headerOverwrite)
+            this._headerOverwrite = args.headerOverwrite
     }
     get header() {
-        return this._header
+        return `
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <meta charset="utf8" />
+                <title>${this._headerTitle}</title>
+                ${this._headerOverwrite || Page.headerDef}
+            </head>`
     }
     set navbar(navbar) {
         this._navbar = navbar
