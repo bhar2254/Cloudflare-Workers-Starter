@@ -180,8 +180,10 @@ export class Page extends HtmlElement {
     }
     constructor(args) {
         super(args)
-        this.header = this.title = args.title || ''
-        this.brand = args.brand || ''
+        this.siteTitle = args.siteTitle || 'Default'
+        this.pageTitle = args.pageTitle || 'Page'
+        this.header = `${this.siteTitle} | ${this.pageTitle}`
+        this.brand = this.siteTitle
         this.navbar = args.navbar || [{}]
         this.body = args.body || 'Bootstrap 5 Starter'
         this.footer = args.footer || Page.footerDef

@@ -10,3 +10,9 @@ globs = ["**/*.js"]
 # Uncomment if you have a build script.
 # [build]
 # command = "npm run build"
+
+# Application Enviromnet
+[vars]
+copyright = 'Blaine Harper'
+siteTitle = 'Cloudflare Starter Worker'
+url = 'https://cloudflare-starter-worker.blaineharper.com'
