@@ -25,7 +25,7 @@ import { getParameterByName, rawHtmlResponse } from './std';
 import { Form, Page } from './dom'
 
 const _headerDef = `<meta name = "viewport" content = "width=device-width,initial-scale=1"/>
-    <link rel="icon" type="image/x-icon" href="https://blaineharper.com/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://blaineharper.com/assets/favicon.ico">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://parking.indianhills.edu/stylesheets/ihcc.css">
