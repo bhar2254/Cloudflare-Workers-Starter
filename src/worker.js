@@ -79,7 +79,7 @@ var src_default = {
 				return rawHtmlResponse(page.render())
 			}
 			case "/projects": {
-				const page = new Page({ ...env, pageTitle: 'Projects', headerOverwrite: _headerDef + '<link rel="stylesheet" href="https://parking.indianhills.edu/stylesheets/bs.add.test.css">',
+				const page = new Page({ ...env, pageTitle: 'Projects', headerOverwrite: _headerDef + parkingTheme('test'),
 					body: `If you'd like to view my other projects, check out my <a href="https://github.com/bhar2254">GitHub</a>!`
 				})
 				return rawHtmlResponse(page.render())
