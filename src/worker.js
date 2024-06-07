@@ -5,7 +5,7 @@
 
 //  Application Enviromnet
 const site_meta = {
-	title: 'CF Worker Starter',
+	title: 'Cloudflare Starter Worker',
 	url: 'https://cf-workers-module-test.bhar2254.workers.dev/',
 	copyright: 'Blaine Harper',
 	navbar: [{
