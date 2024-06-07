@@ -1,0 +1,12 @@
+name = "cf-workers-module-test"
+main = "src/worker.js"
+compatibility_date = "2024-03-26"
+workers_dev = true
+
+[[rules]]
+type = "ESModule"
+globs = ["**/*.js"]
+
+# Uncomment if you have a build script.
+# [build]
+# command = "npm run build"
