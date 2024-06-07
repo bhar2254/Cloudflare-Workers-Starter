@@ -1,13 +1,13 @@
 /**
- * Warrior-Tech.ts
- * A UI and API for allowing student techs to interface with Microsoft Graph API endpoints)
+ * worker.ts
+ * A Cloudflare edge hosted Worker for Bootstrap UI development.
  */
 
 //  Application Enviromnet
 const site_meta = {
-	title: 'CF Worker Module Starter',
-	url: '',
-	copyright: 'Indian Hills Community College',
+	title: 'CF Worker Starter',
+	url: 'https://cf-workers-module-test.bhar2254.workers.dev/',
+	copyright: 'Blaine Harper',
 	navbar: [{
 		text: 'About',
 		links: [{
@@ -25,7 +25,7 @@ import { getParameterByName, rawHtmlResponse } from './ihccStd';
 import { Form, Page } from './dom'
 
 const _headerDef = `<meta name = "viewport" content = "width=device-width,initial-scale=1"/>
-    <link rel="icon" type="image/x-icon" href="https://indianhills.edu/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://blaineharper.com/favicon.ico">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://parking.indianhills.edu/stylesheets/ihcc.css">
@@ -42,7 +42,7 @@ const _headerDef = `<meta name = "viewport" content = "width=device-width,initia
 const copyright = `<span id = "footerText">${new Date().getFullYear()} © ${site_meta.copyright}</span>`
 const _footerDef = `<div class="mx-auto">
         <div id="footer_motto" class="mx-auto ihcc-left-bar p-3 shadow-lg ihcc-sand bg-gradient text-center panel rounded-0" style="width:15%; min-width:10rem; margin-bottom:7.5rem;">
-            <i>Start your own Cloudflare  Worker project at <a href="https://github.com/bhar2254/cf-workers-modules-starter">here!</a></i>
+            <i>Start your own Cloudflare  Worker project at <a href="https://github.com/bhar2254/cloudflare-workers-starter">here!</a></i>
         </div>
         </div >
     </div >

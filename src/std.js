@@ -1,5 +1,5 @@
 /**
- * ihccStd.ts
+ * std.ts
  * Module for creating general applications with Cloudflare Workers
  */
 
