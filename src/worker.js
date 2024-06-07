@@ -21,7 +21,7 @@ const site_meta = {
 }
 
 //  Import modules
-import { getParameterByName, rawHtmlResponse } from './ihccStd';
+import { getParameterByName, rawHtmlResponse } from './std';
 import { Form, Page } from './dom'
 
 const _headerDef = `<meta name = "viewport" content = "width=device-width,initial-scale=1"/>
