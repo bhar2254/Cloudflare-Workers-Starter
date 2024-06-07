@@ -39,7 +39,8 @@ const _headerDef = `<meta name = "viewport" content = "width=device-width,initia
     <script src="https://kit.fontawesome.com/5496aaa581.js" crossorigin="anonymous"><\/script>
     `
 
-const copyright = `<span id = "footerText">${new Date().now().getFullYear()} © ${site_meta.copyright}</span>`
+const yearStamp = new Date()
+const copyright = `<span id = "footerText">${yearStamp.getFullYear()} © ${site_meta.copyright}</span>`
 const _footerDef = `<div class="mx-auto">
         <div id="footer_motto" class="mx-auto ihcc-left-bar p-3 shadow-lg ihcc-sand bg-gradient text-center panel rounded-0" style="width:15%; min-width:10rem; margin-bottom:7.5rem;">
             <i>Start your own Cloudflare  Worker project at <a href="https://github.com/bhar2254/cloudflare-workers-starter">here!</a></i>
