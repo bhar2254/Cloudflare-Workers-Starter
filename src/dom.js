@@ -11,17 +11,22 @@ class StdObject {
     static defaults = {}
     static defaultKeysAllowed = ['header','footer']
     static setup = (setup) => {
-        
+        if(setup.defaults){
+            setDefts(setup.defaults)
+        }
     }
     static setDefs = (setDefaults) => {
-        for(const [key, value] of Object.entries(setDefaults))
-            if (defaultKeysAllowed.includes(key))
-                defaults[key] = value 
+        for(const [key, value] of Object.entries(setDefaults)){
+            if (StdObject.defaultKeysAllowed.includes(key)){
+                StdObject.defaults[key] = value 
+            }
+        }
     }
 }
 
 export class HtmlElement extends StdObject {
     constructor(args) {
+        super(args)
         this.tag = args.tag || ''
         this.attributes = args.attributes || {}
         this.content = args.content || ''
@@ -179,13 +184,13 @@ export class Form extends HtmlElement {
 export class Page extends HtmlElement {
     constructor(args) {
         super(args)
-        this.siteTitle = args.siteTitle.capitalizeFirstChar() || defaults.siteTitle || 'Default'
-        this.pageTitle = args.pageTitle.capitalizeFirstChar() || defaults.pageTitle || 'Page'
+        this.siteTitle = args.siteTitle.capitalizeFirstChar() || Page.defaults.siteTitle || 'Default'
+        this.pageTitle = args.pageTitle.capitalizeFirstChar() || Page.defaults.pageTitle || 'Page'
         this.header = { headerTitle: `${this.siteTitle} | ${this.pageTitle}`, headerOverwrite: args.headerOverwrite || null }
         this.brand = this.siteTitle
-        this.navbar = args.navbar || defaults.navbar || [{}]
-        this.body = args.body || defaults.body || 'Bootstrap 5 Starter'
-        this.footer = args.footer || defaults.footer || ''
+        this.navbar = args.navbar || Page.defaults.navbar || [{}]
+        this.body = args.body || Page.defaults.body || 'Bootstrap 5 Starter'
+        this.footer = args.footer ||  Page.defaults.footer || ''
         this.parent = args.parent || {}
         this.children = args.children || []
         this.tag = 'html'
@@ -272,6 +277,6 @@ export class Page extends HtmlElement {
  </html>`
     }
     render() {
-        return render = this.header + this.navbar + this.body + this.footer
+        return this.header + this.navbar + this.body + this.footer
     }
 }
