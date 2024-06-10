@@ -7,7 +7,20 @@ String.prototype.capitalizeFirstChar = function () {
     return this.charAt(0).toUpperCase() + this.slice(1)
 }
 
-export class HtmlElement {
+class StdObject {
+    static defaults = {}
+    static defaultKeysAllowed = ['header','footer']
+    static setup = (setup) => {
+        
+    }
+    static setDefs = (setDefaults) => {
+        for(const [key, value] of Object.entries(setDefaults))
+            if (defaultKeysAllowed.includes(key))
+                defaults[key] = value 
+    }
+}
+
+export class HtmlElement extends StdObject {
     constructor(args) {
         this.tag = args.tag || ''
         this.attributes = args.attributes || {}
@@ -164,38 +177,18 @@ export class Form extends HtmlElement {
 }
 
 export class Page extends HtmlElement {
-    static headerDef = ''
-    static footerDef = ''
-    static setDefs(args) {
-        if (args.header)
-            Page.setHeaderDef(args.header)
-        if (args.footer)
-            Page.setFooterDef(args.footer)
-    }
-    static setHeaderDef(_headerDef) {
-        Page.headerDef = _headerDef
-    }
-    static setFooterDef(_footerDef) {
-        Page.footerDef = _footerDef
-    }
     constructor(args) {
         super(args)
-        this.siteTitle = args.siteTitle.capitalizeFirstChar() || 'Default'
-        this.pageTitle = args.pageTitle.capitalizeFirstChar() || 'Page'
+        this.siteTitle = args.siteTitle.capitalizeFirstChar() || defaults.siteTitle || 'Default'
+        this.pageTitle = args.pageTitle.capitalizeFirstChar() || defaults.pageTitle || 'Page'
         this.header = { headerTitle: `${this.siteTitle} | ${this.pageTitle}`, headerOverwrite: args.headerOverwrite || null }
         this.brand = this.siteTitle
-        this.navbar = args.navbar || [{}]
-        this.body = args.body || 'Bootstrap 5 Starter'
-        this.footer = args.footer || Page.footerDef
+        this.navbar = args.navbar || defaults.navbar || [{}]
+        this.body = args.body || defaults.body || 'Bootstrap 5 Starter'
+        this.footer = args.footer || defaults.footer || ''
         this.parent = args.parent || {}
         this.children = args.children || []
         this.tag = 'html'
-    }
-    get headerDef() {
-        return Page.headerDef
-    }
-    get footerDef() {
-        return Page.footerDef
     }
     set header(args) {
         this._headerTitle = args.headerTitle
@@ -209,7 +202,8 @@ export class Page extends HtmlElement {
             <head>
                 <meta charset="utf8" />
                 <title>${this._headerTitle}</title>
-                ${this._headerOverwrite || Page.headerDef}
+                <style>${this.style}</style>
+                ${this._headerOverwrite || Page.defaults.header}
             </head>`
     }
     set navbar(navbar) {
@@ -278,7 +272,6 @@ export class Page extends HtmlElement {
  </html>`
     }
     render() {
-        const render = this.header + this.navbar + this.body + this.footer 
-        return render
+        return render = this.header + this.navbar + this.body + this.footer
     }
 }

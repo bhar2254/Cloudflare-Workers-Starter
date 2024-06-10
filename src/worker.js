@@ -50,7 +50,7 @@ var src_default = {
 			return `<link rel="stylesheet" href="https://parking.indianhills.edu/stylesheets/bs.add.${colors[db] || db}.css">`
 		}
 
-		const copyright = `<span id = "footerText"><span id="year"></span> © ${env.copyright}</span>
+		const _copyright = `<span id = "footerText"><span id="year"></span> © ${env.copyright}</span>
 			<script>document.getElementById("year").innerHTML = new Date().getFullYear();</script>`
 
 		const _footerDef = `<div class="mx-auto">
@@ -60,12 +60,16 @@ var src_default = {
 				</div >
 			</div >
 			<footer id="mainFooter" class="mx-auto shadow-lg p-2 text-center ihcc-light-grey bg-gradient sticky-footer">
-				${copyright}
+				${_copyright}
 			</footer>	
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"><\/script>`
 
-		Page.setDefs({ header: _headerDef, footer: _footerDef })
-
+		const pageDefaults = { ...env, 
+			header: _headerDef, 
+			footer: _footerDef, 
+			navbar: env.navbar
+		}
+		Page.setDefs(pageDefaults)
 	//	route handler
 		switch (pathname) {
 			case "/": {
