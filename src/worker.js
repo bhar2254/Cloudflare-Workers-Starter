@@ -18,11 +18,8 @@ var src_default = {
 		env.navbar = [{
 				text: 'About',
 				links: [{
-					text: 'Author',
-					link: '/author'
-				}, {
-					text: 'Read',
-					link: '/read'
+					text: 'Developer',
+					link: '/developer'
 				}, {
 					text: 'Other Projects',
 					link: '/projects'
