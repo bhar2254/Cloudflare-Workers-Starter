@@ -77,7 +77,7 @@ var src_default = {
 		switch (pathname) {
 			case "/": {
 				const page = new Page({
-					...env, pageTitle: 'Home', headerOverwrite: _headerDef + parkingTheme('dev'), body: `<div class="mx-auto">Hello World!<div><br>
+					...env, pageTitle: 'Home', headerOverwrite: _headerDef + parkingTheme('dev'), body: `<div class="mx-auto">Hello World!</div><br>
         				<img class="image-fluid" src="https://raw.githubusercontent.com/bhar2254/Public-Hosting/main/IHCC_Warriors.png">` })
 				return rawHtmlResponse(page.render())
 			}
