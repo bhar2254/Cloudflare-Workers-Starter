@@ -18,12 +18,9 @@ var src_default = {
 		env.navbar = [{
 				text: 'About',
 				links: [{
-					text: 'Author',
-					link: '/author'
-				}, {
-					text: 'Read',
-					link: '/read'
-				}, {
+					text: 'The Developer',
+					link: '/developer'
+				},{
 					text: 'Other Projects',
 					link: '/projects'
 				}],
@@ -58,7 +55,7 @@ var src_default = {
 
 		const _footerDef = `<div class="mx-auto">
 				<div id="footer_motto" class="mx-auto ihcc-left-bar p-3 shadow-lg ihcc-sand bg-gradient text-center panel rounded-0" style="width:15%; min-width:10rem; margin-bottom:7.5rem;">
-					<i>Look out for Life Through Prayer, available in print June 17th on Amazon!</i>
+					<i>Start your own Cloudflare  Worker project at <a href="https://github.com/bhar2254/cloudflare-workers-starter">here!</a></i>
 				</div>
 				</div >
 			</div >
@@ -79,9 +76,9 @@ var src_default = {
 				const page = new Page({ ...env, pageTitle: 'Home', headerOverwrite: _headerDef + parkingTheme('dev'), body: `Hello World!` })
 				return rawHtmlResponse(page.render())
 			}
-			case "/author": {
+			case "/developer": {
 				const page = new Page({ ...env, pageTitle: 'Developer',
-					body: `Hi! My name's Blaine. I make websites and other JavaScript applications. If you're interested in creating your own JavaScript projects like this one, check out my <a href="https://github.com/bhar2254">GitHub</a> or check out my site <a href="https://blaineharper.com">BlaineHarper.com</a> for (possibly?) up to date details. In my spare time I like to write poetry and prayers (same thing?), which is why you're probably here. In 2022 I made a major decision to uproot my life in Kansas City to venture out into the wilderness (Iowa). Along the way I've experience so much and met so many amazing people. So much so that it feels a shame to leave it undocumented considering the fallability of human memory. If something I write connects to you, then we are both blessed.` 
+					body: `Hi! My name's Blaine. I make websites and other JavaScript applications. If you're interested in creating your own JavaScript projects like this one, check out my <a href="https://github.com/bhar2254">GitHub</a> or check out my site <a href="https://blaineharper.com">BlaineHarper.com</a> for (possibly?) up to date details`
 				})
 				return rawHtmlResponse(page.render())
 			}
