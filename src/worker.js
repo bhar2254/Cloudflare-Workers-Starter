@@ -78,7 +78,7 @@ var src_default = {
 			case "/": {
 				const page = new Page({
 					...env, pageTitle: 'Home', headerOverwrite: _headerDef + parkingTheme('dev'), body: `Hello World!<br>
-        				<img class="image-fluid" src="https://indianhills0-my.sharepoint.com/personal/blaine_harper_indianhills_edu/Documents/Pictures/Logos/IHCC_Warriors.png">` })
+        				<img class="image-fluid" src="https://raw.githubusercontent.com/bhar2254/Public-Hosting/main/IHCC_Warriors.png">` })
 				return rawHtmlResponse(page.render())
 			}
 			case "/author": {
