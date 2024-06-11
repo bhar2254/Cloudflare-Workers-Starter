@@ -75,7 +75,7 @@ var src_default = {
 			case "/": {
 				const page = new Page({
 					...env, pageTitle: 'Home', headerOverwrite: _headerDef + parkingTheme('dev'), body: `<div class="p-3 text-center"><h2>Hello World!</h2<</div><br>
-        				<img class="p-3 mx-auto d-block" src="https://raw.githubusercontent.com/bhar2254/Public-Hosting/main/IHCC_Warriors.png">` })
+        				<img class="p-3 mx-auto d-block" src="https://blaineharper.com/assets/favicon.ico">` })
 				return rawHtmlResponse(page.render())
 			}
 			case "/developer": {
