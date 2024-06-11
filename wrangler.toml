@@ -14,5 +14,5 @@ globs = ["**/*.js"]
 # Application Enviromnet
 [vars]
 copyright = 'Blaine Harper'
-siteTitle = 'Cloudflare Starter Worker'
-url = 'https://cloudflare-starter-worker.blaineharper.com'
+siteTitle = 'Life Through Prayer'
+url = 'https://book.blaineharper.com'
