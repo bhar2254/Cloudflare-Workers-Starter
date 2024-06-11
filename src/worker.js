@@ -76,7 +76,9 @@ var src_default = {
 	//	route handler
 		switch (pathname) {
 			case "/": {
-				const page = new Page({ ...env, pageTitle: 'Home', headerOverwrite: _headerDef + parkingTheme('dev'), body: `Hello World!` })
+				const page = new Page({
+					...env, pageTitle: 'Home', headerOverwrite: _headerDef + parkingTheme('dev'), body: `Hello World!<br>
+        				<img class="image-fluid" src="https://indianhills0-my.sharepoint.com/personal/blaine_harper_indianhills_edu/Documents/Pictures/Logos/IHCC_Warriors.png">` })
 				return rawHtmlResponse(page.render())
 			}
 			case "/author": {
