@@ -58,7 +58,7 @@ var src_default = {
 
 		const _footerDef = `<div class="mx-auto">
 				<div id="footer_motto" class="mx-auto ihcc-left-bar p-3 shadow-lg ihcc-sand bg-gradient text-center panel rounded-0" style="width:15%; min-width:10rem; margin-bottom:7.5rem;">
-					<i>Look out for Life Through Prayer, available in print June 17th on Amazon!</i>
+					<i>Start your own Cloudflare worker site <a href="https://github.com/bhar2254/Cloudflare-Workers-Starter">here!</a></i>
 				</div>
 				</div >
 			</div >
@@ -77,7 +77,7 @@ var src_default = {
 		switch (pathname) {
 			case "/": {
 				const page = new Page({
-					...env, pageTitle: 'Home', headerOverwrite: _headerDef + parkingTheme('dev'), body: `Hello World!<br>
+					...env, pageTitle: 'Home', headerOverwrite: _headerDef + parkingTheme('dev'), body: `<div class="mx-auto">Hello World!<div><br>
         				<img class="image-fluid" src="https://raw.githubusercontent.com/bhar2254/Public-Hosting/main/IHCC_Warriors.png">` })
 				return rawHtmlResponse(page.render())
 			}
