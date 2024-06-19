@@ -4,8 +4,9 @@
  */
 
 //  Import modules
-import { rawHtmlResponse } from './std';
+import { rawHtmlResponse } from './std'
 import { Page } from './dom'
+import { Hono } from 'hono'
 
 var ENV = {
 	siteTitle: 'CF Starter Demo',
