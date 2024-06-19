@@ -42,12 +42,12 @@ const _copyright = `<span id = "footerText"><span id="year"></span> © ${ENV.cop
 	<script>document.getElementById("year").innerHTML = new Date().getFullYear();</script>`
 
 const _footerDef = `<div class="mx-auto">
-		<div id="footer_motto" class="mx-auto ihcc-left-bar p-3 shadow-lg ihcc-sand bg-gradient text-center panel rounded-0" style="width:15%; min-width:10rem; margin-bottom:7.5rem;">
+		<div id="footer_motto" class="mx-auto bh-left-bar p-3 shadow-lg bh-sand bg-gradient text-center panel rounded-0" style="width:15%; min-width:10rem; margin-bottom:7.5rem;">
 			<i>Start your own Cloudflare worker site <a href="https://github.com/bhar2254/Cloudflare-Workers-Starter">here!</a></i>
 		</div>
 		</div >
 	</div >
-	<footer id="mainFooter" class="mx-auto shadow-lg p-2 text-center ihcc-light-grey bg-gradient sticky-footer">
+	<footer id="mainFooter" class="mx-auto shadow-lg p-2 text-center bh-light-grey bg-gradient sticky-footer">
 		${_copyright}
 	</footer>	
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"><\/script>`

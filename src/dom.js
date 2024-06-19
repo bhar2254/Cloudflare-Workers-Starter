@@ -217,7 +217,7 @@ export class Modal extends HtmlElement {
         this.body = args.body
         this.footer = args.footer || args.buttons || `
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn poh-primary">Save</button>
+                    <button type="button" class="btn bh-primary">Save</button>
         `
         this.trigger = {
             style: args.trigger ? args.trigger.style : 'primary',
@@ -247,7 +247,7 @@ export class Modal extends HtmlElement {
     }
     get trigger() {
         return `
-        <button type="button" class="btn poh-${this._trigger.style}" data-bs-toggle="modal" data-bs-target="#${this.id}">
+        <button type="button" class="btn bh-${this._trigger.style}" data-bs-toggle="modal" data-bs-target="#${this.id}">
             ${this._trigger.text}
         </button>
         `
@@ -292,7 +292,7 @@ export class Page extends Defaults {
         const body = `
     <body>
         <div class="main">
-            <div class="container my-5 py-3 poh-light-grey shadow-lg poh-left-bar col-lg-6 col-11">
+            <div class="container my-5 py-3 bh-light-grey shadow-lg bh-left-bar col-lg-6 col-11">
                 ${content}
             </div>
         </div>`
