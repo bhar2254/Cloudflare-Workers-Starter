@@ -7,7 +7,11 @@
 import { rawHtmlResponse } from './std';
 import { Page } from './dom'
 
-env.navbar = [{
+var ENV = {
+	siteTitle: 'CF Starter Demo',
+	brand: 'Cloudflare Starter Worker Demo',
+	copyright: 'Blaine Harper',
+	navbar: [{
 		text: 'About',
 		links: [{
 			text: 'Developer',
@@ -16,8 +20,8 @@ env.navbar = [{
 			text: 'Other Projects',
 			link: '/projects'
 		}],
-	}
-]
+	}]
+}
 
 // 	set application default's for page generation
 //	Page will use this as the default contents for <head></head> unless overwritten with Page.header
@@ -33,16 +37,7 @@ const _headerDef = `<meta name = "viewport" content = "width=device-width,initia
 	<script src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/b-print-2.3.6/datatables.min.js"><\/script>
 	<script src="https://kit.fontawesome.com/5496aaa581.js" crossorigin="anonymous"><\/script>`
 
-const parkingTheme = (db) => {
-	const colors = {
-		'red': null,
-		'blue': 'dev',
-		'green': 'test',
-	}
-	return `<link rel="stylesheet" href="https://parking.indianhills.edu/stylesheets/bs.add.${colors[db] || db}.css">`
-}
-
-const _copyright = `<span id = "footerText"><span id="year"></span> © ${env.copyright}</span>
+const _copyright = `<span id = "footerText"><span id="year"></span> © ${ENV.copyright}</span>
 	<script>document.getElementById("year").innerHTML = new Date().getFullYear();</script>`
 
 const _footerDef = `<div class="mx-auto">
@@ -56,10 +51,10 @@ const _footerDef = `<div class="mx-auto">
 	</footer>	
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"><\/script>`
 
-const pageDefaults = { ...env, 
+const pageDefaults = {
+	...ENV, 
 	header: _headerDef, 
-	footer: _footerDef, 
-	navbar: env.navbar
+	footer: _footerDef,
 }
 Page.setDefs(pageDefaults)
 
