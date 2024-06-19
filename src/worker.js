@@ -89,6 +89,8 @@ const applyCSSTheme = (scheme) => {
 		</style>`
 }
 
+const app = new Hono()
+
 //	route handler
 app.get('/', async c => {
 	const page = new Page({
