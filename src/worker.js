@@ -59,6 +59,14 @@ const pageDefaults = {
 }
 Page.setDefs(pageDefaults)
 
+const colors = {
+	'red': { primary: '782F40', secondary: 'FFA400' },
+	'blue': { primary: '001E38', secondary: 'F7C564' },
+	'green': { primary: '01504A', secondary: 'FFC600' },
+	'purple': { primary: '301934', secondary: 'FFA400' },
+	'orange': { primary: 'C04000', secondary: 'F7C564' },
+}
+
 const applyCSSTheme = (scheme) => {
 	const hexToRBG = (hex) => {
 		// Ensure the hex code is exactly 2 digits
