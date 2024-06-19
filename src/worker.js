@@ -5,7 +5,7 @@
 
 //  Import modules
 import { rawHtmlResponse } from './std'
-import { Page } from './dom'
+import { Page } from 'https://bhar2254.github.io/src/js/dom.js'
 import { Hono } from 'hono'
 
 var ENV = {
