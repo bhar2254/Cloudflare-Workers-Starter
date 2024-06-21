@@ -282,7 +282,7 @@ export class Page extends Defaults {
         this.pageTitle = args.pageTitle ? args.pageTitle.capitalizeFirstChar() : Page.defaults.pageTitle || 'Page'
         this.style = args.style || ''
         this.header = { headerTitle: `${this.siteTitle} | ${this.pageTitle}`, headerOverwrite: args.headerOverwrite || null }
-        this.brand = args.brand || this.siteTitle
+        this.brand = args.brand || Page.defaults.brand || args.siteTitle
         this.navbar = args.navbar || Page.defaults.navbar || [{}]
         this.body = args.body || Page.defaults.body || 'Bootstrap 5 Starter'
         this.footer = args.footer || Page.defaults.footer || ''
