@@ -1,0 +1,85 @@
+//  api.js
+
+import { Hono } from 'hono';
+import { decode } from 'jsonwebtoken';
+import { getCookie, setCookie, deleteCookie } from 'hono/cookie';
+
+const router = new Hono();
+
+const getUser = (c) => {
+	const userCookie = getCookie(c, 'user');
+	return userCookie ? JSON.parse(userCookie) : null;
+}
+
+export const isAuth = (c, next) => {
+    if(!getUser(c))
+        return c.redirect('/login')
+    return next()
+}
+
+// Login route - Redirects to Auth0 for authentication
+router.get('/login', (c) => {
+	const auth0Domain = c.env.AUTH0_DOMAIN;
+	const clientId = c.env.AUTH0_CLIENT_ID;
+	console.log(`clean redirect: `, c.env.AUTH0_BASE_URL)
+	const redirectUri = encodeURIComponent(`${c.env.AUTH0_BASE_URL}/callback`);
+	console.log(`redirectUri, `, redirectUri)
+	const authUrl = `https://${auth0Domain}/authorize?` +
+		`response_type=code&` +
+		`client_id=${clientId}&` +
+		`redirect_uri=${redirectUri}&` +
+		`scope=openid profile email`;
+
+	return c.redirect(authUrl);
+});
+
+// Handle Auth0 callback
+router.get('/callback', async (c) => {
+	const params = new URLSearchParams(c.req.query());
+	const code = params.get('code');
+	if (!code) return c.json({ error: 'Authorization code missing' }, 400);
+
+	const auth0Domain = c.env.AUTH0_DOMAIN;
+	const clientId = c.env.AUTH0_CLIENT_ID;
+	const clientSecret = c.env.AUTH0_CLIENT_SECRET;
+	const redirectUri = c.env.AUTH0_BASE_URL + '/callback';
+
+	// Exchange the code for tokens
+	const tokenResponse = await fetch(`https://${auth0Domain}/oauth/token`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		body: new URLSearchParams({
+			grant_type: 'authorization_code',
+			client_id: clientId,
+			client_secret: clientSecret,
+			code,
+			redirect_uri: redirectUri,
+		}),
+	});
+
+	const tokenData = await tokenResponse.json();
+	if (!tokenResponse.ok) return c.json({ error: tokenData.error_description || 'Token exchange failed' }, 400);
+
+	// Decode and verify the ID token
+	const { id_token } = tokenData;
+	const decoded = decode(id_token, { complete: true });
+	if (!decoded) return c.json({ error: 'Invalid token' }, 400);
+
+	// Store the decoded user object in the cookie (session)
+	setCookie(c, 'user', JSON.stringify(decoded.payload), { httpOnly: false, sameSite: 'Lax', secure: false });
+
+
+	// Redirect to the /auth/profile route
+	return c.redirect('/auth/profile');
+});
+
+// Route: Logout
+router.get('/logout', (c) => {
+	const { env } = c
+	const { AUTH0_BASE_URL, AUTH0_DOMAIN, AUTH0_CLIENT_ID } = env
+	deleteCookie(c, 'user');
+	const logoutUrl = `https://${AUTH0_DOMAIN}/v2/logout?client_id=${AUTH0_CLIENT_ID}&returnTo=${AUTH0_BASE_URL}`;
+	return c.redirect(logoutUrl);
+});
+
+export const authRoutes = router

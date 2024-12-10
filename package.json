@@ -1,13 +1,17 @@
 {
-  "name": "ltc-preview",
-  "version": "1.0.0",
+  "name": "cf-workers-starter",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
-    "dev": "wrangler dev",
-    "start": "wrangler dev"
+    "dev": "wrangler dev --env dev --live-reload",
+    "start": "wrangler dev --env dev --remote",
+    "build": "esbuild src/index.js --bundle --outfile=dist/index.js"
   },
   "devDependencies": {
     "wrangler": "^3.0.0"
+  },
+  "dependencies": {
+    "hono": "^4.6.13"
   }
 }

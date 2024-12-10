@@ -1,11 +1,13 @@
 name = "cf-workers-starter"
 main = "src/worker.js"
-compatibility_date = "2024-01-01"
-workers_dev = true
+compatibility_date = "2024-11-12"
+compatibility_flags = ["nodejs_compat"]
 
-[[rules]]
-type = "ESModule"
-globs = ["**/*.js"]
+[observability]
+enabled = true
+
+[dev]
+port=8787
 
 # Uncomment if you have a build script.
 # [build]
@@ -13,6 +15,7 @@ globs = ["**/*.js"]
 
 # Application Enviromnet
 [vars]
-copyright = 'Blaine Harper'
-siteTitle = 'Cloudflare Starter Worker'
-url = 'https://book.blaineharper.com'
+BASE_URL = 'https://cf-workers-starter.blaineharper.com'
+
+[env.dev]
+vars = { BASE_URL='http://localhost:8787' }

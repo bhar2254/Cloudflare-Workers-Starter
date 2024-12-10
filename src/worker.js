@@ -4,9 +4,9 @@
  */
 
 //  Import modules
-import { rawHtmlResponse } from './std'
-import { Page } from 'https://bhar2254.github.io/src/js/dom.js'
-import { Hono } from 'hono'
+import { Hono } from 'hono';
+import { Page } from './dom'
+import indexRouter from './index'
 
 var ENV = {
 	siteTitle: 'CF Starter Demo',
@@ -30,7 +30,7 @@ const _headerDef = `<meta name = "viewport" content = "width=device-width,initia
 	<link rel="icon" type="image/x-icon" href="https://blaineharper.com/assets/favicon.ico">
 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://bhar2254.github.io/src/css/ltc/bs.add.css">
+	<link rel="stylesheet" href="https://bhar2254.github.io/src/css/bs.add.css">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"><\/script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"><\/script>
@@ -57,82 +57,15 @@ const pageDefaults = {
 	header: _headerDef, 
 	footer: _footerDef,
 }
-Page.setDefs(pageDefaults)
-
-const colors = {
-	'red': { primary: '782F40', secondary: 'FFA400' },
-	'blue': { primary: '001E38', secondary: 'F7C564' },
-	'green': { primary: '01504A', secondary: 'FFC600' },
-	'purple': { primary: '301934', secondary: 'FFA400' },
-	'orange': { primary: 'C04000', secondary: 'F7C564' },
-}
-
-const applyCSSTheme = (scheme) => {
-	const hexToRBG = (hex) => {
-		// Ensure the hex code is exactly 2 digits
-		if (hex.length !== 6) {
-			throw new Error('Invalid hex color format. It should be 6 digits.');
-		}
-		let output = parseInt(hex, 16)
-		output = Math.floor(output)
-		output = Math.min(255, Math.max(0, output))
-		const rDecimalValue = parseInt(hex.substring(0, 2), 16)
-		const gDecimalValue = parseInt(hex.substring(2, 4), 16)
-		const bDecimalValue = parseInt(hex.substring(4, 6), 16)
-
-		// Use the decimal value for each RGB component to create a shade of gray
-		return `${rDecimalValue}, ${gDecimalValue}, ${bDecimalValue}`
-	}
-	if (!Object.keys(colors).includes(scheme))
-		scheme = 'purple'
-	const rbgPrimary = `${hexToRBG(colors[scheme].primary)}`
-	const rbgSecondary = `${hexToRBG(colors[scheme].secondary)}`
-	return `
-		<style>
-		:root{
-			--bh-primary: #${colors[scheme].primary};
-			--bh-primary-rgb: ${rbgPrimary};
-			--bh-secondary: #${colors[scheme].secondary};
-			--bh-secondary-rgb: ${rbgSecondary};
-		}
-		</style>`
-}
 
 const app = new Hono()
 
-//	route handler
-app.get('/', async c => {
-	const page = new Page({
-		page_title: 'Home',
-		headerOverwrite: _headerDef + applyCSSTheme('green'),
-		body: `<div class="p-3 text-center"><h2>Hello World!</h2<</div><br>
-				<img class="p-3 mx-auto d-block rounded" src="https://blaineharper.com/assets/favicon.ico" style="max-width:100%; max-height: 25rem">`
-	})
-	return rawHtmlResponse(page.render())
+app.use( (c, next) => {
+	c.set('pageDefaults', pageDefaults)
+	Page.setDefs(pageDefaults)
+	return next()
 })
 
-app.get('/developer', async c => {
-	const page = new Page({
-		pageTitle: 'Developer', headerOverwrite: _headerDef + applyCSSTheme('purple'),
-		body: `Hi! My name's Blaine. I make websites and other JavaScript applications. If you're interested in creating your own JavaScript projects like this one, check out my <a href="https://github.com/bhar2254">GitHub</a> or check out my site <a href="https://blaineharper.com">BlaineHarper.com</a> for (possibly?) up to date details.`
-	})
-	return rawHtmlResponse(page.render())
-})
-
-app.get('/projects', async c => {
-	const page = new Page({
-		pageTitle: 'Projects', headerOverwrite: _headerDef + applyCSSTheme('blue'),
-		body: `If you'd like to view my other projects, check out my <a href="https://github.com/bhar2254">GitHub</a>!`
-	})
-	return rawHtmlResponse(page.render())
-})
-
-app.notFound(c => {
-	const page = new Page({
-		pageTitle: '404 | Not Found!',
-		body: `<span class="fs-3">404 Not Found!</span> <hr> PAGE NOT FOUND! Head <a href="/">home</a> to try and find what you're looking for.`
-	})
-	return rawHtmlResponse(page.render())
-})
+app.route('/', indexRouter)
 
 export default app
